@@ -1,3 +1,5 @@
+using Ecommerce_web_api.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+UserEndpoint.MapEndpoints(app);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
