@@ -19,4 +19,20 @@ public class UserService : IUser
         var userList = await _dataContext.Users.ToListAsync();
         return userList;
     }
+
+    public async Task<User> Register(User user)
+    {
+        await _dataContext.Users.AddAsync(user);
+        await _dataContext.SaveChangesAsync();
+        return user;
+    }
+
+    public async Task<bool> Login(string phoneNumber, string password)
+    {
+        var checkPwd = "";
+        var user = await _dataContext.Users.Where(u => u.PhoneNumber == phoneNumber && u.Password == checkPwd).FirstOrDefaultAsync();
+        if (user is null)
+            return false;
+        return true;
+    }
 }
