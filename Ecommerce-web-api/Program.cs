@@ -1,5 +1,6 @@
 using Ecommerce_web_api.Data;
 using Ecommerce_web_api.Endpoints;
+using Ecommerce_web_api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddScoped<UserService>();
 builder.Services.AddDbContext<DataContext>(opt => opt
     .UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
